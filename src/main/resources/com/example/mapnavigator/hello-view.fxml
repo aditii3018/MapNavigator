@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="10" style="-fx-padding: 20;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.mapnavigator.HelloController">
+    <Label style="-fx-font-size: 24; -fx-font-weight: bold;" text="Map Navigator" />
+    <Label style="-fx-font-size: 14; -fx-padding: 10; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-background-color: #e8e8e8;" text="Instructions: Select the source and destination cities, then click 'Find Shortest Path' to see the shortest route." />
+
+    <HBox alignment="CENTER" spacing="10">
+        <VBox alignment="CENTER_LEFT" spacing="5">
+            <Label text="Source:" />
+            <ComboBox fx:id="sourceComboBox" promptText="Select source location">
+                <tooltip>
+                    <Tooltip text="Select the starting point" />
+                </tooltip>
+            </ComboBox>
+        </VBox>
+        <VBox alignment="CENTER_LEFT" spacing="5">
+            <Label text="Destination:" />
+            <ComboBox fx:id="destinationComboBox" promptText="Select destination location">
+                <tooltip>
+                    <Tooltip text="Select the destination point" />
+                </tooltip>
+            </ComboBox>
+        </VBox>
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="10">
+        <Button onAction="#onFindPathClick" text="Find Shortest Path">
+            <tooltip>
+                <Tooltip text="Click to find the shortest path between the selected source and destination" />
+            </tooltip>
+        </Button>
+    </HBox>
+
+    <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="630.0" spacing="10">
+        <Label style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: blue;" text="Result:" wrapText="true" prefHeight="50.0" minHeight="50.0" />
+        <Label fx:id="resultLabel" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: red;"  wrapText="true" prefHeight="100.0" minHeight="100.0" />
+
+        <Label style="-fx-font-weight: bold;" text="Add or Delete Connection" />
+        <HBox spacing="10">
+            <Label text="Source:" />
+            <TextField fx:id="newSourceField" promptText="Enter source location" />
+            <Label text="Destination:" />
+            <TextField fx:id="newDestinationField" promptText="Enter destination location" />
+            <Label text="Weight (km):" />
+            <TextField fx:id="newWeightField" promptText="Enter weight" />
+        </HBox>
+        <HBox alignment="CENTER" layoutY="2.0" spacing="10">
+            <Button onAction="#onAddEdgeClick" text="Add Edge">
+                <tooltip>
+                    <Tooltip text="Click to add a new edge" />
+                </tooltip>
+            </Button>
+            <Button onAction="#onDeleteEdgeClick" text="Delete Edge">
+                <tooltip>
+                    <Tooltip text="Click to delete the specified edge" />
+                </tooltip>
+            </Button>
+        </HBox>
+    </VBox>
+
+    <Canvas fx:id="graphCanvas" height="400" width="600" />
+</VBox>
